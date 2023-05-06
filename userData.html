@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+   <body>
+    <p id="firstnames"></p>
+    <button onclick="userData()">show all users</button>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Mobile No</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td id="firstNameid",[]></td>
+                <td id="lastNameid",[]></td>
+                <td id="mobileid",[]></td>
+                <td id="mailid",[]></td>
+            </tr> -->
+        </tbody>
+              
+    </table>
+
+<script>
+function userData(){
+
+
+
+    const table = document.getElementById('data-table');
+    const dataArray = JSON.parse(localStorage.getItem('signUpData')) || [];
+
+    const firstnames = dataArray.map(item => item.firstName);
+    console.log(firstnames);
+    document.getElementById("firstnames").innerHTML ="All Users FirstName " + firstnames +" ";
+
+    for (let i = 0; i < dataArray.length; i++) {
+        const newRow = table.insertRow();
+        const first_name = newRow.insertCell(0);
+        const last_name = newRow.insertCell(1);
+        const mobile = newRow.insertCell(2)
+        const email = newRow.insertCell(3);
+       
+        first_name.innerHTML = dataArray[i].firstName;
+        last_name.innerHTML =dataArray[i].lastName;
+        mobile.innerHTML = dataArray[i].mobile;
+        email.innerHTML = dataArray[i].email;
+   
+      }
+}</script>
+    </body>
+</html>
